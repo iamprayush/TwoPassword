@@ -28,6 +28,16 @@
   margin: 3% 3% 3% 18%;
 }
 
+a.heading {
+  color: #818181;
+  text-decoration: none;
+}
+
+a.heading:hover {
+  color: #818181;
+  text-decoration: none;
+}
+
 .user-form {
   text-align: left;
 }

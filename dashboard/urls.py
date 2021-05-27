@@ -4,8 +4,11 @@ from . import views
 app_name = 'dashboard'
 
 urlpatterns = [
-    path('', views.Home.as_view(), name='dashboard_home_view'),
+    path('', views.HomeView.as_view(), name='home'),
+    path('master_password/',
+         views.MasterPassword.as_view(),
+         name='master_password'),
     path('password_entry/<pk>/',
-         views.PasswordEntryDetailView.as_view(),
-         name='password_entry_detail_view'),
+         views.PasswordEntryView.as_view(),
+         name='password_entry'),
 ]

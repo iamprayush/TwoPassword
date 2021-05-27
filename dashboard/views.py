@@ -16,8 +16,15 @@ class HomeView(LoginRequiredMixin, generic.ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        result = models.PasswordEntry.objects.filter(
-            master=self.request.user).order_by('website_name')
+        search_string = self.request.GET.get('search', '')
+        if len(search_string) == 0:
+            result = models.PasswordEntry.objects.filter(
+                master=self.request.user).order_by('website_name')
+        else:
+            result = models.PasswordEntry.objects.filter(
+                master=self.request.user,
+                website_address__icontains=search_string).order_by(
+                    'website_name')
         return result
 
 
@@ -60,7 +67,8 @@ class CreatePasswordEntry(LoginRequiredMixin, generic.View):
 
     def get(self, request):
         form = forms.PasswordEntryForm()
-        return render(request, 'dashboard/password_entry_create.html', {'form': form})
+        return render(request, 'dashboard/password_entry_create.html',
+                      {'form': form})
 
     def post(self, request):
         form = forms.PasswordEntryForm(request.POST)
@@ -70,7 +78,8 @@ class CreatePasswordEntry(LoginRequiredMixin, generic.View):
             obj.save()
             return redirect(reverse('dashboard:home'))
 
-        return render(request, 'dashboard/password_entry_create.html', {'form': form})
+        return render(request, 'dashboard/password_entry_create.html',
+                      {'form': form})
 
 
 class DeletePasswordEntry(LoginRequiredMixin, generic.edit.DeleteView):
@@ -112,5 +121,7 @@ class MasterPassword(LoginRequiredMixin, generic.View):
                 return redirect(next_url)
             return redirect(reverse('dashboard:home'))
 
-        return render(request, 'dashboard/master_password.html',
-                      {'form': form, 'error_message': 'Incorrect password.'})
+        return render(request, 'dashboard/master_password.html', {
+            'form': form,
+            'error_message': 'Incorrect password.'
+        })

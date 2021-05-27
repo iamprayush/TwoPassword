@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
+from django.urls import reverse
+
 from .forms import RegisterForm
 
 
@@ -12,5 +14,6 @@ class Register(View):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
+            return redirect(reverse('dashboard:home'))
 
         return render(request, 'users/register.html', {'form': form})

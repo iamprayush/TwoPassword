@@ -21,7 +21,7 @@ class HomeView(LoginRequiredMixin, generic.ListView):
         return result
 
 
-class PasswordEntryView(LoginRequiredMixin, generic.View):
+class ShowPasswordEntry(LoginRequiredMixin, generic.View):
     """
     Endpoint to reveal the password for a website entry.
 
@@ -52,7 +52,32 @@ class PasswordEntryView(LoginRequiredMixin, generic.View):
         # password again.
         request.session['master_is_authenticated'] = False
 
-        return render(request, 'dashboard/password_entry_detail.html', context)
+        return render(request, 'dashboard/password_entry_show.html', context)
+
+
+class CreatePasswordEntry(LoginRequiredMixin, generic.View):
+    login_url = '/users/login/'
+
+    def get(self, request):
+        form = forms.PasswordEntryForm()
+        return render(request, 'dashboard/password_entry_create.html', {'form': form})
+
+    def post(self, request):
+        form = forms.PasswordEntryForm(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.master = request.user
+            obj.save()
+            return redirect(reverse('dashboard:home'))
+
+        return render(request, 'dashboard/password_entry_create.html', {'form': form})
+
+
+class DeletePasswordEntry(LoginRequiredMixin, generic.edit.DeleteView):
+    login_url = '/users/login/'
+    model = models.PasswordEntry
+    template_name = 'dashboard/password_entry_delete_confirm.html'
+    success_url = '/'
 
 
 class MasterPassword(LoginRequiredMixin, generic.View):

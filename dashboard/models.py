@@ -15,4 +15,4 @@ class PasswordEntry(models.Model):
         indexes = [models.Index(fields=['website_address'])]
 
     def __str__(self):
-        return f'Password entry for {self.website_name}.'
+        return f'Password entry for {self.website_name}'

@@ -5,7 +5,11 @@
 {% block content %}
 
 <h3>Password Entries</h3>
-<h5>Click on any of the entries to reveal the password.</h5>
+<h5>Click on any of the website names to reveal the password.</h5>
+
+<button type="button" class="btn btn-info mt-3" onclick="location.href='/password_entry/'">
+  Create Entry
+</button>
 
 <table class="table password-entries">
   <thead>
@@ -13,17 +17,22 @@
       <th scope="col">Website name</th>
       <th scope="col">Website address</th>
       <th scope="col">Username</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
     {% for password_entry in password_entries %}
-    <tr
-      onclick="window.location='/password_entry/' + {{ password_entry.id }} + '/'"
-      class="password-entry"
-    >
-      <td>{{ password_entry.website_name }}</td>
+    <tr class="password-entry">
+      <td class="website-name" onclick="window.location='/password_entry/' + {{ password_entry.id }} + '/'">
+        {{ password_entry.website_name }}
+      </td>
       <td>{{ password_entry.website_address }}</td>
       <td>{{ password_entry.username }}</td>
+      <td>
+        <a href="/password_entry/{{ password_entry.id }}/delete/">
+          Delete
+        </a>
+      </td>
     </tr>
     {% endfor %}
   </tbody>

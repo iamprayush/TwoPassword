@@ -14,8 +14,3 @@ class Register(View):
             form.save()
 
         return render(request, 'users/register.html', {"form": form})
-
-
-class Login(View):
-    def get(self, request):
-        return render(request, 'users/login.html')

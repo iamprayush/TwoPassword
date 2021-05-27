@@ -25,9 +25,18 @@
 
 .main {
   text-align: center;
+  margin: 3% 3% 3% 18%;
 }
 
 .user-form {
   text-align: left;
-  margin: 3% 3% 3% 18%;
+}
+
+.password-entries {
+  margin-top: 5%;
+}
+
+.password-entry:hover {
+  background-color: rgb(216, 216, 216);
+  cursor: pointer;
 }

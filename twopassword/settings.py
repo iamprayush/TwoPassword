@@ -41,9 +41,11 @@ INSTALLED_APPS = [
 
     # Third party apps.
     'crispy_forms',
+    'rest_framework',
 
     # TwoPassword apps.
     'users',
+    'dashboard',
 ]
 
 MIDDLEWARE = [
@@ -134,5 +136,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = "/"
-LOGOUT_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

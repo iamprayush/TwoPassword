@@ -3,11 +3,11 @@ from django.views import View
 
 class Register(View):
     def get(self, request):
-        pass
+        return render(request, 'users/register.html')
     
     def post(self, request):
         pass
 
 class Login(View):
     def get(self, request):
-        pass
+        return render(request, 'users/login.html')

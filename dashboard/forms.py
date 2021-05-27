@@ -6,7 +6,7 @@ class PasswordEntryForm(forms.ModelForm):
     website_name = forms.CharField()
     website_address = forms.CharField(widget=forms.URLInput())
     username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput())
+    password = forms.CharField()
 
     class Meta:
         model = models.PasswordEntry

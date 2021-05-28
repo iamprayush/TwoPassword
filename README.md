@@ -1,4 +1,4 @@
-# TwoPassword
+# [TwoPassword](https://two-password.herokuapp.com/)
 ## Objective
 Keeping strong passwords on the services that you use on the Internet is important. It is also important to not re-use passwords across different services. Religiously doing these two things can save you from a lot of pain when any of the services that you use get compromised unfortunately. Your job is to build a password manager, called **TwoPassword**, that helps users generate and store passwords for the different services they use.
 
@@ -20,7 +20,7 @@ https://user-images.githubusercontent.com/35144226/119908492-55b37a00-bf70-11eb-
 
 ## Technologies used
 - Django (Backend Framework)
-- SQLite (Database)
+- SQLite (Database) (PostgresQL in [deployment](https://two-password.herokuapp.com/) on Heroku)
 - Bootstrap and JQuery (Frontend)
 
 ## Local setup
